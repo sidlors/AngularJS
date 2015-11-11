@@ -1,11 +1,25 @@
-<html ng-app="MyFirstApp">
-    <head>
-        <meta charset="utf-8">
-        <title>Example AngularJS</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-        <script src="controller/controller.js"></script>
-    </head>
-    <body ng-controller="FirstController">
-        {{"Hola "+ nombre}}
-    </body>
+<!DOCTYPE html>
+<html>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+<ul>
+  <li ng-repeat="x in names">
+    {{ x.Name + ', ' + x.Country }}
+  </li>
+</ul>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+  $http.get("http://www.w3schools.com/angular/customers.php")
+  .success(function (response) {$scope.names = response.records;});
+});
+</script>
+
+</body>
 </html>
